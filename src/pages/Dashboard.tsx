@@ -4,6 +4,7 @@ import { Toaster } from 'sonner'
 import { CalendarView } from '../components/CalendarView'
 import { HolidayCard } from '../components/HolidayCard'
 import { MonthsaryCard } from '../components/MonthsaryCard'
+import { NoteAnalytics } from '../components/NoteAnalytics'
 import { NoteCard } from '../components/NoteCard'
 import { NoteViewer } from '../components/NoteViewer'
 import { ScheduleWidget } from '../components/ScheduleWidget'
@@ -72,6 +73,12 @@ export function Dashboard({ notes, categories, theme, onToggleTheme }: Dashboard
           </div>
 
           {tab === 'Overview' && <section className="overview-view">
+            <div className="overview-intro">
+              <p className="section-eyebrow">YOUR DAY, AT A GLANCE</p>
+              <h2>A little web of <span>good things.</span></h2>
+              <p>All the little things you need, ready when you are.</p>
+            </div>
+            <NoteAnalytics notes={notes} />
             <div className="overview-widgets"><ScheduleWidget /><div className="overview-side-widgets"><MonthsaryCard /><HolidayCard /></div></div>
             <div className="overview-notes-heading"><div><p className="section-eyebrow">YOUR GO-TO WORDS</p><h2>Recently updated <span>({latestNotes.length})</span></h2></div><button type="button" className="text-link" onClick={() => { setTab('Notes'); setFilter('all') }}>All notes <span>→</span></button></div>
             <div className="notes-grid overview-notes">{latestNotes.map((note, index) => <NoteCard key={note.id} note={note} index={index} onOpen={setSelectedNote} />)}</div>
